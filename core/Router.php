@@ -1,4 +1,7 @@
 <?php
+namespace Core;
+
+use App\Controllers;
 
 Class Router {
 
@@ -54,13 +57,15 @@ Class Router {
 
     public function dispatch($url, $request)
     {
+        $url = $this->removeQueryStringVar($url);
         if($this->match($url, 'GET')) {
             // get the controller 
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
+            $controller = "App\Controllers\\$controller";
 
             if(class_exists($controller)){
-                $controller_object = new $controller();
+                $controller_object = new $controller($this->params);
 
                 $action = $this->params['action'];
 
@@ -88,5 +93,18 @@ Class Router {
     // convert a string to camel Case e.g hello-world => helloWorld    
     private function convertToCamelCase($str) {
         return lcfirst($this->convertToStudlyCaps($str));
+    }
+
+    // Remove Query String Variables
+    private function removeQueryStringVar($url) {
+        if($url != '') {
+            $parts = explode('&', $url, 2);
+            if(strpos($parts[0], "=") === false) {
+                $url = $parts[0];
+            } else {
+                $url = '';
+            }
+        }
+        return $url;
     }
 }
