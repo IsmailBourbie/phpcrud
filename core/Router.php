@@ -15,7 +15,7 @@ Class Router {
     public $params = [];
 
     // convert all string routes to regular expression
-        public function convertToRegX($route)
+        private function convertToRegX($route)
         {
             // escape / signe
             $route = preg_replace('/\//','\\/', $route);
@@ -36,7 +36,7 @@ Class Router {
         
 
     // check if the requested url exists in our routes table
-    public function match($url, $request) {
+    private function match($url, $request) {
         foreach($this->routes[$request] as $route => $params) {
             if(preg_match($route, $url, $matches)) {
                 foreach($matches as $key => $param) {
@@ -51,4 +51,42 @@ Class Router {
         return false;
     }
     
+
+    public function dispatch($url, $request)
+    {
+        if($this->match($url, 'GET')) {
+            // get the controller 
+            $controller = $this->params['controller'];
+            $controller = $this->convertToStudlyCaps($controller);
+
+            if(class_exists($controller)){
+                $controller_object = new $controller();
+
+                $action = $this->params['action'];
+
+                $action = $this->convertToCamelCase($action);
+
+                if(is_callable([$controller_object, $action])) {
+                    $controller_object->$action();
+
+                } else {
+                    die('method: ' . $action.' not exists in controller ' . $controller_object);
+                }
+            } else {
+                die('controller ' . $controller_object . ' not exists');
+            }
+        } else {
+            die("url not found");
+        }
+    }
+
+    // convert String to study Capitals e.g user-auth => UserAuth
+    private function convertToStudlyCaps($str) {
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $str)));
+    }
+
+    // convert a string to camel Case e.g hello-world => helloWorld    
+    private function convertToCamelCase($str) {
+        return lcfirst($this->convertToStudlyCaps($str));
+    }
 }
