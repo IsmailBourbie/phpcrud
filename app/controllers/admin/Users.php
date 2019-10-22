@@ -2,10 +2,12 @@
 namespace App\Controllers\Admin;
 
 use Core\Controller;
+use Core\View;
 
 class Users extends Controller {
     public function addAction() {
-        echo "add user Controller<br>";
+        $data =  ['x' => 3];
+        View::render('admin/users/add.php', $data);
     }
 
     protected function after(){
