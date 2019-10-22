@@ -19,7 +19,7 @@ abstract Class Controller {
                 $this->after();
             }
         } else {
-            die('method: ' . $action.' not exists in controller ' . $controller_object);
+            die('method: ' . $method.' not exists in controller ');
         }
     }
 

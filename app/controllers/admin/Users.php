@@ -1,12 +1,11 @@
 <?php
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use Core\Controller;
 
 class Users extends Controller {
     public function addAction() {
         echo "add user Controller<br>";
-        echo 'id = ' . $this->route_params['id'];
     }
 
     protected function after(){

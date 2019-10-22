@@ -17,6 +17,17 @@ Class Router {
     // Save params from matched route
     public $params = [];
 
+
+    // Load routes from extrenal file
+    public static function load($file) {
+        $router = new static;
+        if(file_exists($file)){
+            require $file;
+        } else {
+            die('file not exists');
+        }
+        return $router;
+    }
     // convert all string routes to regular expression
         private function convertToRegX($route)
         {
@@ -57,12 +68,11 @@ Class Router {
 
     public function dispatch($url, $request)
     {
-        $url = $this->removeQueryStringVar($url);
         if($this->match($url, 'GET')) {
             // get the controller 
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);
-            $controller = "App\Controllers\\$controller";
+            $controller = $this->getNamespace() . "$controller";
 
             if(class_exists($controller)){
                 $controller_object = new $controller($this->params);
@@ -75,10 +85,10 @@ Class Router {
                     $controller_object->$action();
 
                 } else {
-                    die('method: ' . $action.' not exists in controller ' . $controller_object);
+                    die('method: ' . $action.' not exists in controller ' . $controller);
                 }
             } else {
-                die('controller ' . $controller_object . ' not exists');
+                die('controller ' . $controller . ' not exists');
             }
         } else {
             die("url not found");
@@ -95,16 +105,14 @@ Class Router {
         return lcfirst($this->convertToStudlyCaps($str));
     }
 
-    // Remove Query String Variables
-    private function removeQueryStringVar($url) {
-        if($url != '') {
-            $parts = explode('&', $url, 2);
-            if(strpos($parts[0], "=") === false) {
-                $url = $parts[0];
-            } else {
-                $url = '';
-            }
+
+    // check if there is namespace
+    private function getNamespace() {
+        $namespace = 'App\Controllers\\';
+
+        if(array_key_exists('namespace', $this->params)) {
+            $namespace .= $this->params['namespace'] . "\\";
         }
-        return $url;
+        return $namespace;
     }
 }
