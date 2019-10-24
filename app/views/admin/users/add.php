@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>Add User by an Admin</h1>
-    <b>Data: <?= $x?></b>
+    <p>User add: <b>: <?= $user?></b></p>    
 </body>
 </html>
