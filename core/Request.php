@@ -12,7 +12,7 @@ Class Request {
 
 
     // Remove Query String Variables
-    private function removeQueryStringVar($url) {
+    private static function removeQueryStringVar($url) {
         if($url != '') {
             $parts = explode('&', $url, 2);
             if(strpos($parts[0], "=") === false) {

@@ -2,6 +2,7 @@
 namespace Core;
 
 use App\Controllers;
+use ErrorException;
 
 Class Router {
 
@@ -24,7 +25,7 @@ Class Router {
         if(file_exists($file)){
             require $file;
         } else {
-            die('file not exists');
+            throw ErrorException('file not exists');
         }
         return $router;
     }
@@ -85,13 +86,13 @@ Class Router {
                     $controller_object->$action();
 
                 } else {
-                    die('method: ' . $action.' not exists in controller ' . $controller);
+                    throw new ErrorException('method: ' . $action.' not exists in controller ' . $controller);
                 }
             } else {
-                die('controller ' . $controller . ' not exists');
+                throw new ErrorException('controller ' . $controller . ' not exists');
             }
         } else {
-            die("url not found");
+            throw new ErrorException("url not found");
         }
     }
 
