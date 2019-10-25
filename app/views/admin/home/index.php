@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>Welcome to admin dashbord</h1>
-</body>
-</html>
+<?php require_once(App\Config::ROOT('APP') . "views/includes/head.php") ?>
+
+<!-- Include navbar -->
+<?php require_once(App\Config::ROOT('APP') . "views/includes/navbar.php") ?>
+
+
+    <h1>Welcome to admin dashboard</h1>
+
+
+
+<?php require_once(App\Config::ROOT('APP') . "views/includes/footer.php") ?>
