@@ -1,2 +1,6 @@
 vendor/*
 logs/*
+public/fonts/*
+public/css/bootstrap.min.css
+public/js/jquery-1.12.1.min.js
+public/js/bootstrap.min.js
