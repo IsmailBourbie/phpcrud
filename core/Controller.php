@@ -1,17 +1,28 @@
 <?php
 namespace Core;
+
+use ErrorException;
+
 abstract Class Controller {
 
     protected $route_params = [];
 
-    public function __construct($params)
-    {
+    /**
+     * constructor of the class
+     * @param array $params
+     */
+    public function __construct($params) {
         $this->route_params = $params;
     }
 
 
-    public function __call($name, $args)
-    {
+    /**
+     * Magic funcrion: called whene the called action not found
+     * @param mixed $name
+     * @param mixed $args
+     * @throws Exception
+     */
+    public function __call($name, $args) {
         $method = $name . "Action";
         if(method_exists($this, $method)) {
             if($this->before() !== false) {
@@ -19,20 +30,25 @@ abstract Class Controller {
                 $this->after();
             }
         } else {
-            die('method: ' . $method.' not exists in controller ');
+            throw new ErrorException('method: ' . $method.' not exists in controller');
         }
     }
 
-
-    // this func must return true te call the action
-    // this func must overrated
+    /**
+     * this method used as filter, whene returns false, can't call the action
+     * to use this method, must be overrated in the controller
+     * @access protected
+     * @return bool
+     */
     protected function before() {
         // Some code
         return true;
     }
 
-
-    // this func called after the func actio done
+    /**
+     * this method colled after finish any action
+     * @access protected
+     */
     protected function after() {
         // Some code
     }

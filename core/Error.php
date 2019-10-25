@@ -8,14 +8,26 @@ use Core\View;
 class Error {
 
 
-    // convert errors into excpetions
+    /**
+     * convert errors into excpetions
+     * @param mixed $level
+     * @param mixed $message
+     * @param mixed $file
+     * @param mixed $line
+     * @return void
+     * @throws Exception
+     * 
+     */
     public static function errorHandler($level, $message, $file, $line) {
        if(error_reporting() !== 0)  { // to keep @ keyword workig
             throw new ErrorException($message, 0, $level, $file, $line);
        }
     }
 
-    // Handle exceptions
+    /**
+     * Handle exceptions
+     * @param mixed $exception
+     */
     public static function exceptionHandler($exception)
    {
       $code = $exception->getCode();
