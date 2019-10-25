@@ -92,7 +92,7 @@ Class Router {
                 throw new ErrorException('controller ' . $controller . ' not exists');
             }
         } else {
-            throw new ErrorException("url not found");
+            throw new ErrorException("url not found", 404);
         }
     }
 
