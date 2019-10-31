@@ -53,4 +53,12 @@ abstract Class Controller {
         // Some code
     }
     
+
+    // just helper function for die and var_dump
+    public static function dd($val) {
+        echo "<pre>";
+            var_dump($val);
+        echo "</pre>";
+        die();
+    }
 }

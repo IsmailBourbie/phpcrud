@@ -6,14 +6,21 @@ use Core\Controller;
 use Core\View;
 
 class Users extends Controller {
-    public function addAction() {
 
-        $username = $_GET['u'];
-        $data =  ['user' => 'Unkown'];
-        if(User::add($username)) {
-            $data['user'] = $username;
-        }
-        View::render('admin/users/add.php', $data);
+
+    public function addAction() {
+        $data = [
+            "username" => "ismail_bourbie",
+            "fname" => "bourbie",
+            "lname" => "ismail",
+            "age" => 25
+        ];
+        User::create($data);
+    }
+
+    public function allAction() {
+        $users = User::read();
+        $this->dd($users);
     }
 
     protected function after(){

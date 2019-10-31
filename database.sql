@@ -8,5 +8,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50)
+    username VARCHAR(50),
+    fname VARCHAR(20),
+    lname VARCHAR(20),
+    age INTEGER
 );
