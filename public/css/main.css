@@ -41,3 +41,29 @@ div.container.dashboard {
     background-color: #CD483F;
     color: #2E303B;
 }
+
+/* Add new User */
+
+.add-users form {
+    width: 60%;
+    margin: 80px auto;
+}
+
+.add-users form .input-group {
+    margin-bottom: 20px;
+}
+.add-users form .row {
+    text-align: center;
+}
+
+.add-users form .row button {
+    width: 60%;
+}
+
+.add-users form .row button[type="submit"] {
+    background-color: #92C393;
+}
+
+.add-users form .row button[type="reset"] {
+    background-color: #CD483F;
+}

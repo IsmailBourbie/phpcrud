@@ -60,7 +60,16 @@ Class Router {
         $route = $this->convertToRegX($route);
         $this->routes["GET"][$route] = $params;
     }
-        
+       
+    /**
+     * add routes for GET Request Method
+     * @param string $route
+     * @param Array $params of the route
+     */
+    public function post($route, $params = []) {
+        $route = $this->convertToRegX($route);
+        $this->routes["POST"][$route] = $params;
+    }
 
     /**
      * match the requestd url with our routes
@@ -90,7 +99,7 @@ Class Router {
      * @throws Exception
      */
     public function dispatch($url, $request) {
-        if($this->match($url, 'GET')) {
+        if($this->match($url, $request)) {
             // get the controller 
             $controller = $this->params['controller'];
             $controller = $this->convertToStudlyCaps($controller);

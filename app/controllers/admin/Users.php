@@ -18,6 +18,10 @@ class Users extends Controller {
         User::create($data);
     }
 
+    public function newAction() {
+        View::render("admin/users/add.php");
+    }
+
     public function allAction() {
         $users = User::read();
         $data = [
