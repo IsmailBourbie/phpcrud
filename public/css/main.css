@@ -25,3 +25,19 @@ div.container.dashboard {
 .dashboard .row a:hover {
     color: #CD483F;
 }
+
+/* Users page Design */
+.users header {
+    color: #2E303B;
+    margin-bottom: 20px;
+    padding: 20px 10px;
+}
+
+.users table {
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+}
+.users table thead {
+    background-color: #CD483F;
+    color: #2E303B;
+}

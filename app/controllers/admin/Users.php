@@ -20,10 +20,11 @@ class Users extends Controller {
 
     public function allAction() {
         $users = User::read();
-        $this->dd($users);
+        $data = [
+            "users" => $users,
+            "i" => 0
+        ];
+        View::render("admin/users/all.php", $data);
     }
 
-    protected function after(){
-        echo "<br> this is from after function";
-    }
 }
