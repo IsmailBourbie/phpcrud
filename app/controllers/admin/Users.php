@@ -9,13 +9,9 @@ class Users extends Controller {
 
 
     public function addAction() {
-        $data = [
-            "username" => "ismail_bourbie",
-            "fname" => "bourbie",
-            "lname" => "ismail",
-            "age" => 25
-        ];
-        User::create($data);
+        $user = $_POST;
+        User::create($user);
+        $this->redirect('admin/users');
     }
 
     public function newAction() {

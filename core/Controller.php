@@ -1,6 +1,7 @@
 <?php
 namespace Core;
 
+use App\Config;
 use ErrorException;
 
 abstract Class Controller {
@@ -61,4 +62,12 @@ abstract Class Controller {
         echo "</pre>";
         die();
     }
+
+    /**
+     * redirect to url
+     * @param mixed $page
+     */
+    public static function redirect($page) {
+        header('Location: ' . Config::ROOT('URL') . $page);
+     }
 }

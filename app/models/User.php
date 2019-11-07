@@ -6,16 +6,16 @@ use PDO;
 
 class User extends Model implements Crud {
 
-    public static function create($data) {
+    public static function create($user) {
         $db = static::getDB();
 
         $sql = 'INSERT INTO users VALUES(null, :username, :fname, :lname, :age)';
 
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':username', $data['username'], PDO::PARAM_STR);
-        $stmt->bindParam(':fname', $data['fname'], PDO::PARAM_STR);
-        $stmt->bindParam(':lname', $data['lname'], PDO::PARAM_STR);
-        $stmt->bindParam(':age', $data['age'], PDO::PARAM_INT);
+        $stmt->bindParam(':username', $user['username'], PDO::PARAM_STR);
+        $stmt->bindParam(':fname', $user['fname'], PDO::PARAM_STR);
+        $stmt->bindParam(':lname', $user['lname'], PDO::PARAM_STR);
+        $stmt->bindParam(':age', $user['age'], PDO::PARAM_INT);
         return $stmt->execute();
 
     }

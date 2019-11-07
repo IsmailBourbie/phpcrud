@@ -10,22 +10,22 @@
             <form action="<?=App\Config::ROOT("URL")?>admin/users/add" method="post">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
                     <span class="input-group-addon" id="basic-addon1"></span>
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="First name">
+                    <input type="text" name="fname" class="form-control" placeholder="First name" required>
                     <span class="input-group-addon" id="basic-addon1"></span>
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="text" class="form-control" placeholder="Last name">
+                    <input type="text" name="lname" class="form-control" placeholder="Last name" required>
                     <span class="input-group-addon" id="basic-addon1"></span>
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"></span>
-                    <input type="number" class="form-control" placeholder="Age" min="10" max="100">
+                    <input type="number" name="age" class="form-control" placeholder="Age" min="10" max="100" required>
                     <span class="input-group-addon" id="basic-addon1"></span>
                 </div>
                 <div class="row">
